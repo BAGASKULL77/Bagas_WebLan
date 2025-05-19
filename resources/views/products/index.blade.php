@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html>
+<h2>Form Tambah Users</h2>
 
-<head>
-    <title>Produk E-Commerce</title>
-</head>
+@if (session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
 
-<body>
-    <h1>Daftar Produk</h1>
-
-    <ul>
-        @foreach($products as $id => $product)
-        <li>
-            <a href="{{ route('products.show', $id) }}">
-                {{ $product['name'] }} - Rp{{ number_format($product['price'], 0, ',', '.') }}
-            </a>
-        </li>
+@if ($errors->any())
+    <ul style="color: red;">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
         @endforeach
     </ul>
+@endif
 
-    
-</body>
-
-</html>
+<form method="POST" action="{{ route('user.store') }}">
+    @csrf
+    <input type="text" name="name" placeholder="Nama" value="{{ old('name') }}"><br>
+    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password"><br>
+    <button type="submit">Simpan</button>
+</form>
