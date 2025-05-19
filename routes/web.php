@@ -16,3 +16,18 @@ Route::post('/contact', [ContactController::class, 'store']);
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/admin', [AdminController::class, 'create']);
 Route::post('/admin', [AdminController::class, 'store']);
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/gallery', function () {
+    return view('gallery');
+});
